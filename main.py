@@ -2,25 +2,31 @@ import discord
 from discord.ext import commands
 import json
 import os
+import asyncio
 
-# Get configuration.json
-with open("configuration.json", "r") as config: 
-	data = json.load(config)
-	token = data["token"]
-	prefix = data["prefix"]
-	owner_id = data["owner_id"]
+# Determine the path to the configuration file relative to the main.py script
+base_directory = os.path.dirname(os.path.abspath(__file__))
+config_file_path = os.path.join(base_directory, 'configuration.json')
 
+# Print the current working directory
+print(f"Current Working Directory: {os.getcwd()}")
+print(f"Configuration file path: {config_file_path}")
 
-class Greetings(commands.Cog):
-	def __init__(self, bot):
-		self.bot = bot
-		self._last_member = None
+# Load configuration
+with open(config_file_path) as config_file:
+    config = json.load(config_file)
 
-# Intents
+token = config["token"]
+prefix = config["prefix"]
+owner_id = config["owner_id"]
+
+# Initialize bot with intents
 intents = discord.Intents.default()
-intents.members = True  # Enable the member intents for tracking join/leave events
-# The bot instance
-bot = commands.Bot(prefix, intents = intents, owner_id = owner_id)
+intents.messages = True
+intents.guilds = True
+intents.message_content = True
+
+bot = commands.Bot(command_prefix=prefix, owner_id=owner_id, intents=intents)
 
 # Color scheme for embeds
 COLOR_SCHEME = 0x1abc9c
@@ -31,16 +37,19 @@ def create_embed(title, description, color=COLOR_SCHEME):
     # Customize the embed further if needed
     return embed
 
-# Load cogs
-if __name__ == '__main__':
-	for filename in os.listdir("Cogs"):
-		if filename.endswith(".py"):
-			bot.load_extension(f"Cogs.{filename[:-3]}")
-
 @bot.event
 async def on_ready():
-	print(f"We have logged in as {bot.user}")
-	print(discord.__version__)
-	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name =f"{bot.command_prefix}help"))
+    if bot.user:
+        print(f'Logged in as {bot.user.name} - {bot.user.id}')
+    print('Ready to serve!')
 
-bot.run(token)
+# Load cogs
+initial_extensions = ['cogs.pack', 'cogs.collection', 'cogs.trading', 'cogs.showcase', 'cogs.events']
+
+async def load_extensions():
+    for extension in initial_extensions:
+        await bot.load_extension(extension)
+
+if __name__ == '__main__':
+    asyncio.run(load_extensions())
+    bot.run(token)

@@ -1,0 +1,31 @@
+{
+    "pack_name": "2023-24 Hockey Series Two",
+    "image": "C:/Users/AZA Custom Builds/Desktop/EPDiscord/PackMaster/images/2023-24series2/Series2Pack.png",
+    "animation": "C:/Users/AZA Custom Builds/Desktop/EPDiscord/PackMaster/animations/2023-24series2/enhanced_pack_opening_202324-series2.gif",
+    "cards": [
+        {
+            "player_name": "Jakob Silfverberg",
+            "card_set": "2023-24 UD Series 2 Hockey Base Set",
+            "card_number": 251,
+            "type": "base",
+            "front_image": "C:/Users/AZA Custom Builds/Desktop/EPDiscord/PackMaster/images/2023-24series2/base-251-front.jpg",
+            "back_image": "C:/Users/AZA Custom Builds/Desktop/EPDiscord/PackMaster/images/2023-24series2/base-251-back.jpg"
+        },
+        {
+            "player_name": "Troy Terry",
+            "card_set": "2023-24 UD Series 2 Hockey Base Set",
+            "card_number": 252,
+            "type": "base",
+            "front_image": "C:/Users/AZA Custom Builds/Desktop/EPDiscord/PackMaster/images/2023-24series2/base-252-front.jpg",
+            "back_image": "C:/Users/AZA Custom Builds/Desktop/EPDiscord/PackMaster/images/2023-24series2/base-252-back.jpg"
+        },
+        {
+            "player_name": "Cam Fowler",
+            "card_set": "2023-24 UD Series 2 Hockey Base Set",
+            "card_number": 253,
+            "type": "base",
+            "front_image": "C:/Users/AZA Custom Builds/Desktop/EPDiscord/PackMaster/images/2023-24series2/base-253-front.jpg",
+            "back_image": "C:/Users/AZA Custom Builds/Desktop/EPDiscord/PackMaster/images/2023-24series2/base-253-back.jpg"
+        }
+    ]
+}
